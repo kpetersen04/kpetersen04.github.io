@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.948);
+  color: rgba(255, 255, 0, 0.926);
+}
+
+/* landing page */
+/* #logo {
+  width: 50vw;
+}
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}*/
+
+/* p {
+  color: rgba(255, 255, 0, 0.926);
+  font-size: 1.5em;
+  text-align: center;
+  width: 70vw;
+} */
+
+/*.playGame {
+  background-color: rgb(57, 57, 232);
+  width: 33vw;
+  font-size: 2em;
+  padding: 0.5em;
+  color: rgba(255, 255, 0, 0.926);
+  border-radius: 20px;
+  border: 4px solid rgba(255, 255, 0, 0.926);
+  cursor: pointer;
+} */
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* gamePage */
+
+.gamePage {
+  display: flex;
+}
+
+/* left side */
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 95vh;
+  width: 25vw;
+  margin: 1em;
+}
+
+.lifeScoreBox,
+.levelsContainer {
+  border: 1px solid rgba(255, 255, 0, 0.926);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.livesBox {
+  display: flex;
+  justify-content: center;
+}
+
+.life {
+  border: 1px solid rgba(255, 255, 0, 0.926);
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: 1em;
+  padding: 12px 5px 0 5px;
+  flex-shrink: 1;
+}
+
+.levelsContainer {
+  text-align: start;
+  padding-left: 20px;
+}
+
+/* ------------------------------------ */
+/* center  */
+.gameContainer {
+  margin: auto;
+}
+
+.gridBox {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 629px;
+  height: 652px;
+}
+
+.gridBox div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 0, 0.926);
+}
+/* ------------------------------------ */
+/* right side */
+
+.gameBtns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18vh;
+}
+
+button {
+  background-color: rgb(57, 57, 232);
+  color: rgba(255, 255, 0, 0.926);
+  border-radius: 5px;
+  width: 25vw;
+  height: 7.5vh;
+  border: 2px solid rgba(255, 255, 0, 0.926);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.audioContainer {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  /* border: 1px solid red; */
+}
