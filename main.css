@@ -155,9 +155,26 @@ button {
 .pokeball {
   background-color: red;
   background-image: url("/images/pokeball.jpeg");
+  background-size: cover;
 }
 
 .meowth {
   background-image: url("images/Meowth.png");
   background-size: cover;
+}
+
+.jessie {
+  background-color: palevioletred;
+}
+
+.james {
+  background-color: purple;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.scared-baddies {
+  background-color: orange;
 }
