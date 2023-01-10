@@ -1,18 +1,27 @@
+// landing page
+const playBtn = document.querySelector(".playGame");
+const pageOne = document.querySelector(".p1");
+const pageTwo = document.querySelector(".gamePage");
+
 document.addEventListener("DOMContentLoaded", function () {
   console.log("all connected");
+  pageTwo.style.display = "none";
 });
 
-// landing page
-// const playBtn = document.querySelector(".playGame");
-// const pageOne = document.querySelector(".landingPage");
+function playGame() {
+  pageOne.style.display = "none";
+  pageTwo.style.display = "flex";
+  // document.addEventListener("keydown", startBaddiesMovement);
+  document.addEventListener("keydown", move);
+}
 
-// playBtn.addEventListener("click", clearP1);
+playBtn.addEventListener("click", playGame);
 
-// function clearP1() {
-//   // document.body.innerHTML = " ";
-//   // pageOne.classList.remove(".p1");
-//   // console.log("button clicked");
-// }
+function returnToPageOne() {
+  pageOne.style.display = "flex";
+  pageTwo.style.display = "none";
+}
+
 // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 const width = 28;
 const height = 31;
@@ -108,6 +117,7 @@ function move() {
   ) {
     pokeBallPosition++;
     if (pokeBallPosition === 419) {
+      boxes[pokeBallPosition].classList.remove("pokemon");
       pokeBallPosition = 392;
     }
   } else if (
@@ -117,6 +127,7 @@ function move() {
   ) {
     pokeBallPosition--;
     if (pokeBallPosition === 392) {
+      boxes[pokeBallPosition].classList.remove("pokemon");
       pokeBallPosition = 419;
     }
   } else if (
@@ -136,9 +147,10 @@ function move() {
   pokemomEaten();
   engergiserEaten();
   loseLife();
+  checkForWin();
 }
 
-document.addEventListener("keydown", move);
+// document.addEventListener("keydown", move);
 
 function pokemomEaten() {
   if (boxes[pokeBallPosition].classList.contains("pokemon")) {
@@ -151,11 +163,8 @@ function pokemomEaten() {
 function engergiserEaten() {
   if (boxes[pokeBallPosition].classList.contains("energiser")) {
     boxes[pokeBallPosition].classList.remove("energiser");
-    // make the baddies flash
     allBaddies.forEach((baddie) => (baddie.isScared = true));
-    setTimeout(revertBaddies, 30000);
-    // startBaddiesMovement();
-    // change to 10000 once I am done or don't need to fix scarred ghosts stuff
+    setTimeout(revertBaddies, 10000);
   }
 }
 
@@ -227,27 +236,27 @@ function moveAllBaddies(baddie) {
       boxes[baddie.position].classList.contains("pokeball") &&
       baddie.isScared === true
     ) {
-      clearInterval(baddie.timerId);
       boxes[baddie.position].classList.remove(
         baddie.className,
         "baddies",
         "scared-baddies"
       );
+      baddie.position = baddie.startPosition;
       boxes[baddie.startPosition].classList.add(baddie.className, "baddies");
+      baddie.isScared = false;
       score += 100;
     }
-
-    //   // setTimeout(moveAllBaddies(), 2000);
-    //   // returns the bad guys to their home  but doesn't restart their movement again - need to fix
-    // }
     loseLife();
   }, baddie.speed);
 }
+function startBaddiesMovement() {
+  allBaddies.forEach((baddie) => moveAllBaddies(baddie));
+  document.removeEventListener("keydown", startBaddiesMovement);
+}
+
+// document.addEventListener("keydown", startBaddiesMovement);
 
 function loseLife(baddie) {
-  //   // if the score = 2930 - You win! Would you like to play again?
-  //   // if endGame button is clicked - Are you sure you want to quit? Y/N options
-  //   // if you loose 3 lives - You loose
   if (
     boxes[pokeBallPosition].classList.contains("baddies") &&
     !boxes[pokeBallPosition].classList.contains("scared-baddies")
@@ -282,20 +291,71 @@ function loseLife(baddie) {
       document.querySelector("#life1").classList.remove("life");
       endGame();
     }
-  } else if (boxes[pokeBallPosition].classList.contains("scared-baddies")) {
-    console.log("ghost is scared");
-    // engergiserEaten();
+    // } else if (boxes[pokeBallPosition].classList.contains("scared-baddies")) {
+    //   console.log("ghost is scared");
+    // Can't remember why I did this - delete when game is finalised
+    // }
   }
+}
+function resetGame() {
+  qtBtnClicked = false;
+  scoreDisplay.innerHTML = 00;
+  score = 0;
+  document.querySelector("#life1").classList.add("life");
+  document.querySelector("#life1").innerHTML = "L1";
+  document.querySelector("#life2").classList.add("life");
+  document.querySelector("#life2").innerHTML = "L2";
+  document.querySelector("#life3").classList.add("life");
+  document.querySelector("#life3").innerHTML = "L3";
+  createGrid();
+
+  boxes[pokeBallPosition].classList.remove("pokeball");
+  pokeBallPosition = 489;
+  boxes[pokeBallPosition].classList.remove("pokemon");
+  boxes[pokeBallPosition].classList.add("pokeball");
+
+  allBaddies.forEach(function (baddie) {
+    clearInterval(baddie.timerId);
+    boxes[baddie.position].classList.remove(
+      baddie.className,
+      "baddies",
+      "scared-baddies"
+    );
+    baddie.position = baddie.startPosition;
+    boxes[baddie.position].classList.add(baddie.className, "baddies");
+  });
+  // document.addEventListener("keydown", startBaddiesMovement);
+  // document.addEventListener("keydown", move);
 }
 
 function endGame() {
-  console.log("You have lost all your lives, game over!");
-  scoreDisplay.innerHTML = "You have no more lives. Game Over!";
-  boxes[pokeBallPosition].classList.remove("pokeball");
-  document.removeEventListener("keydown", move);
+  //   // if endGame button is clicked - Are you sure you want to quit? Y/N options - DONE
+  //   // if you loose 3 lives - You loose - DONE
+  // document.removeEventListener("keydown", move);
+  if (qtBtnClicked === true) {
+    returnToPageOne();
+    resetGame();
+  } else if (!document.querySelector("#life1").classList.contains("life")) {
+    scoreDisplay.innerHTML = "You have no more lives. Game Over!";
+    boxes[pokeBallPosition].classList.remove("pokeball");
+    document.removeEventListener("keydown", move);
+    document.removeEventListener("keydown", startBaddiesMovement);
+    setTimeout(returnToPageOne, 1000);
+    resetGame();
+  }
 
-  // SetTimeout - after 5 seconds returnt to the landing page?
+  // else if (score >= 100 && !boxes.classList.contain("pokemon")) {
+  //   console.log("endGame");
+  // }
 }
+
+function checkForWin() {
+  if (score >= 2920 && !boxes.classList.contains("pokemon")) {
+    console.log("endGame - You win");
+    // start here tomorrow with the !boxes.classList.contains("pokemon")
+  }
+}
+
 // scoreDisplay.innertHTML = "Game Over!";
 
 // remove all ghosts and return to home
@@ -306,66 +366,11 @@ function endGame() {
 //   console.log("endGame");
 // }
 
-// WORKS DONT DELETE ---------
-// function moveAllBaddies(baddie) {
-//   baddie.timerId = setInterval(function () {
-//     if (
-//       !boxes[baddie.position + movement].classList.contains("wall") &&
-//       !boxes[baddie.position + movement].classList.contains("baddies")
-//     ) {
-//       boxes[baddie.position].classList.remove(
-//         baddie.className,
-//         "baddies",
-//         "scared-baddies"
-//       );
-//       baddie.position += movement;
-//       boxes[baddie.position].classList.add(baddie.className, "baddies");
-//     } else {
-//       movement =
-//         directionOptions[Math.floor(Math.random() * directionOptions.length)];
-//     }
-
-//     if (baddie.isScared === true) {
-//       boxes[baddie.position].classList.add("scared-baddies");
-//     }
-
-//     if (
-//       boxes[baddie.position].classList.contains("pokeball") &&
-//       baddie.isScared === true
-//     ) {
-//       clearInterval(baddie.timerId);
-//       boxes[baddie.position].classList.remove(
-//         baddie.className,
-//         "baddies",
-//         "scared-baddies"
-//       );
-//       boxes[baddie.startPosition].classList.add(baddie.className, "baddies");
-//       score += 100;
-
-//       // setTimeout(moveAllBaddies(), 2000);
-//       // returns the bad guys to their home  but doesn't restart their movement again - need to fix
-//     }
-//     // endGame();
-//   }, baddie.speed);
-// }
-
-// ----------
-
-function startBaddiesMovement() {
-  allBaddies.forEach((baddie) => moveAllBaddies(baddie));
-  document.removeEventListener("keydown", startBaddiesMovement);
-}
-
-// --------------
-// Make baddies move out of box and onto the board and then start random movement.
-// if (baddie.position = 321, 349, 377, 405, 406, 433, 434)
-// if (baddie.position = 405 || 433) - minus 28 three times and then start random movement
-// if (baddie.position = 406 || 434) - minus 28 three times and then start random movement
-
-document.addEventListener("keydown", startBaddiesMovement);
-
-document.querySelector(".quitBtn").addEventListener("click", (endGame) => {
-  console.log("connected");
+let qtBtnClicked = false;
+const qtBtn = document.querySelector(".quitBtn");
+qtBtn.addEventListener("click", (buttonEndGame) => {
+  qtBtnClicked = true;
+  endGame();
 });
 
 // ------DONT TOUCH BELOW---------- RETURN TO WHEN YOU WANT TO WORK ON LOGICAL MOVEMENT OF THE GHOSTS
