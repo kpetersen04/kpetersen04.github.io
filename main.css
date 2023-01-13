@@ -10,6 +10,9 @@ body {
   width: 50vw;
 }
 
+/* .p1Remove {
+  display: none;
+} */
 .landingPage {
   display: flex;
   flex-direction: column;
@@ -17,12 +20,14 @@ body {
   align-items: center;
   margin-bottom: 50px;
 }
+
 * .p1 p {
   color: rgba(255, 255, 0, 0.926);
   font-size: 1.5em;
   text-align: center;
   width: 70vw;
 }
+
 .playGame {
   background-color: rgb(57, 57, 232);
   width: 33vw;
@@ -39,6 +44,10 @@ body {
 .gamePage {
   display: flex;
 }
+
+/* .p2Remove {
+  display: none;
+} */
 
 /* left side */
 .left,
