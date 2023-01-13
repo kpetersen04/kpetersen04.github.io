@@ -1,3 +1,69 @@
+// sound
+const audioElement = document.querySelector("audio");
+const playSoundBtn = document.querySelector("#play");
+const pauseSoundBtn = document.querySelector("#pause");
+
+const startGameSound = "./audio/pacman_beginning.wav";
+const catchPokemonSound = "./audio/pacman_chomp.wav";
+const deathSound = "./audio/pacman_death.wav";
+const eatScaredBaddieSound = "./audio/pacman_eatghost.wav";
+
+let soundOptions = [
+  startGameSound,
+  catchPokemonSound,
+  deathSound,
+  eatScaredBaddieSound,
+];
+let sound;
+
+let isPauseBtnClicked = false;
+let isPlayBtnClicked = false;
+isPaused = false;
+
+function playAudio(audio) {
+  if (isPaused === false) {
+    sound = new Audio(audio);
+    sound.play();
+  } else;
+}
+
+function pauseAudio(audio) {
+  if (isPaused === true) {
+    sound.pause();
+  } else;
+}
+
+function pressPlayPauseBtns(audio) {
+  if (isPlayBtnClicked === true) {
+    console.log("played");
+    // sound.src = "";
+    // sound.play();
+    isPaused = false;
+    playSoundBtn.removeEventListener("click", pressPlayPauseBtns);
+    pauseSoundBtn.addEventListener("click", pressPlayPauseBtns);
+  } else if (isPauseBtnClicked === true) {
+    console.log("paused");
+    sound.pause();
+    isPaused = true;
+    soundOptions.forEach((option) => pauseAudio());
+    pauseSoundBtn.removeEventListener("click", pressPlayPauseBtns);
+    playSoundBtn.addEventListener("click", pressPlayPauseBtns);
+  }
+}
+
+pauseSoundBtn.addEventListener("click", pressPlayPauseBtns);
+playSoundBtn.addEventListener("click", pressPlayPauseBtns);
+
+playSoundBtn.addEventListener("click", function () {
+  isPlayBtnClicked = true;
+  isPauseBtnClicked = false;
+  pressPlayPauseBtns;
+});
+pauseSoundBtn.addEventListener("click", function () {
+  isPlayBtnClicked = false;
+  isPauseBtnClicked = true;
+  pressPlayPauseBtns;
+});
 // landing page
 const playBtn = document.querySelector(".playGame");
 const pageOne = document.querySelector(".p1");
@@ -13,13 +79,13 @@ function playGame() {
   // pageOne.classList.add("p1Remove");
   pageOne.style.display = "none";
   pageTwo.style.display = "flex";
+  playAudio(startGameSound);
 
   document.addEventListener("keydown", startBaddiesMovement);
   document.addEventListener("keydown", move);
 }
 
 playBtn.addEventListener("click", playGame);
-// playBtn.addEventListener("click", createGrid);
 
 function returnToPageOne() {
   pageOne.style.display = "flex";
@@ -126,6 +192,10 @@ pokeballAppear();
 
 const x = pokeBallPosition % width;
 function move() {
+  // pauseAudio(startGameSound);
+  // startGameSound.pause();
+  // isSoundPlaying = false;
+  // pauseAudio(startGameSound);
   boxes[pokeBallPosition].classList.remove("pokeball");
   if (
     event.code === "ArrowRight" &&
@@ -163,7 +233,7 @@ function move() {
   boxes[pokeBallPosition].classList.add("pokeball");
   pokemomEaten();
   engergiserEaten();
-  loseLife();
+  setTimeout(loseLife(), 250);
   checkForWin();
 }
 
@@ -172,6 +242,8 @@ function move() {
 function pokemomEaten() {
   if (boxes[pokeBallPosition].classList.contains("pokemon")) {
     boxes[pokeBallPosition].classList.remove("pokemon");
+    // catchPokemonSound.playbackRate = 2;
+    playAudio(catchPokemonSound);
     score += 10;
     pokemonToCatch.length -= 1;
     scoreDisplay.innerHTML = score;
@@ -208,10 +280,10 @@ class Baddie {
 // jessie = inky (His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target.)
 // james = pinky (chases to the 2 pac-dots in front of pac-man)
 // blue = clyde (chases directly after pacman)
-const meowth = new Baddie("meowth", 405, 300);
-const jessie = new Baddie("jessie", 406, 400);
-const james = new Baddie("james", 433, 500);
-const blue = new Baddie("blue", 434, 600);
+const meowth = new Baddie("meowth", 405, 200);
+const jessie = new Baddie("jessie", 406, 200);
+const james = new Baddie("james", 433, 400);
+const blue = new Baddie("blue", 434, 700);
 
 const allBaddies = [meowth, jessie, james, blue];
 allBaddies.forEach((baddie) => {
@@ -255,6 +327,7 @@ function moveAllBaddies(baddie) {
       boxes[baddie.position].classList.contains("pokeball") &&
       baddie.isScared === true
     ) {
+      playAudio(eatScaredBaddieSound);
       boxes[baddie.position].classList.remove(
         baddie.className,
         "baddies",
@@ -280,6 +353,7 @@ function loseLife(baddie) {
     boxes[pokeBallPosition].classList.contains("baddies") &&
     !boxes[pokeBallPosition].classList.contains("scared-baddies")
   ) {
+    playAudio(deathSound);
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
       boxes[baddie.position].classList.remove(
@@ -290,6 +364,7 @@ function loseLife(baddie) {
       baddie.position = baddie.startPosition;
       boxes[baddie.position].classList.add(baddie.className, "baddies");
     });
+
     boxes[pokeBallPosition].classList.remove("pokeball");
     pokeBallPosition = 489;
     boxes[pokeBallPosition].classList.add("pokeball");
@@ -380,7 +455,7 @@ function endGame() {
 
 function checkForWin() {
   // if (score >= 2920 && pokemonToCatch.length <= 2) {
-  if (score >= 40 && pokemonToCatch.length == 285) {
+  if (score >= 2920 && pokemonToCatch.length <= 2) {
     console.log("You win");
     document.removeEventListener("keydown", move);
     scoreDisplay.innerHTML = "You win!";
@@ -393,9 +468,6 @@ function checkForWin() {
 }
 
 function pause(baddie) {
-  console.log("button is paused");
-  ispauseBtnClicked = true;
-  console.log(ispauseBtnClicked);
   pauseResumeBtn.innerHTML = "Resume Game";
   allBaddies.forEach(function (baddie) {
     clearInterval(baddie.timerId);
@@ -410,11 +482,11 @@ function resume() {
   ispauseBtnClicked = false;
   console.log(ispauseBtnClicked);
   pauseResumeBtn.innerHTML = "Pause Game";
-  // allBaddies.forEach(function (baddie) {
-  //   clearInterval(baddie.timerId);
-  // });
+  allBaddies.forEach(function (baddie) {
+    clearInterval(baddie.timerId);
+  });
   document.addEventListener("keydown", move);
-  // document.addEventListener("keydown", startBaddiesMovement);
+  document.addEventListener("keydown", startBaddiesMovement);
   startBaddiesMovement();
   pauseResumeBtn.removeEventListener("click", resume);
   pauseResumeBtn.addEventListener("click", pause);

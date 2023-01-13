@@ -15,24 +15,26 @@ body {
 } */
 .landingPage {
   display: flex;
+  flex-shrink: inherit;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  height: 90vh;
+  width: 100vw;
 }
 
-* .p1 p {
+.p1 p {
   color: rgba(255, 255, 0, 0.926);
   font-size: 1.5em;
   text-align: center;
-  width: 70vw;
+  width: 65vw;
 }
 
 .playGame {
   background-color: rgb(57, 57, 232);
   width: 33vw;
   font-size: 2em;
-  padding: 0.5em;
+  padding: 0.3em;
   color: rgba(255, 255, 0, 0.926);
   border-radius: 20px;
   border: 4px solid rgba(255, 255, 0, 0.926);
@@ -43,6 +45,9 @@ body {
 
 .gamePage {
   display: flex;
+  /* flex-shrink: 1;
+  height: 100vh;
+  width: 100vw; */
 }
 
 /* .p2Remove {
@@ -55,7 +60,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 95vh;
+  height: 90vh;
   width: 25vw;
   margin: 1em;
 }
@@ -132,11 +137,21 @@ button {
   cursor: pointer;
 }
 
-.audioContainer {
+#audioContainer {
   display: flex;
+  /* flex-direction: column; */
   justify-content: end;
-  gap: 10px;
+  gap: 20px;
   /* border: 1px solid red; */
+}
+
+.audio-btns {
+  cursor: pointer;
+  font-size: 2em;
+}
+
+#pause {
+  margin-right: 10px;
 }
 
 .wall {
@@ -171,17 +186,64 @@ button {
 }
 
 .jessie {
-  background-color: palevioletred;
+  background-image: url("images/JessieUpdated.png");
+  background-size: cover;
 }
 
 .james {
-  background-color: purple;
+  background-image: url("images/JamesUpdated.png");
+  background-size: cover;
 }
 
 .blue {
-  background-color: blue;
+  background-image: url("images/Wobbuffet.png");
+  background-size: cover;
 }
 
 .scared-baddies {
-  background-color: red;
+  background-color: #4cc9f0;
+  /* background-size: cover; */
+}
+/* @media only screen and (max-width: 2500px) {
+  .playGame,
+  .p1 p {
+    font-size: 2em;
+  }
+  /* .landingPage {
+    height: 80vh;
+  } */
+/* } */
+
+/* @media only screen and (max-width: 1600px) {
+  .playGame {
+    font-size: 2em;
+  }
+  .p1 p {
+    font-size: 2em;
+  }
+
+}  */
+
+@media only screen and (max-width: 980px) {
+  .playGame {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .playGame {
+    font-size: 1.2em;
+  }
+  .p1 p {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .playGame {
+    font-size: 0.9em;
+  }
+  .p1 p {
+    font-size: 1em;
+  }
 }

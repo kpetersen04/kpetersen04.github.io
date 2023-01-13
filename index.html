@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
     <script src="app.js" defer></script>
+    <link rel="icon" href="data:,">
     <title>PokeMan</title>
   </head>
   <body>
     <div class="landingPage p1 p1Remove">
       <img id="logo" class='p1' src="/images/Pokemon_logo_PNG3.png" alt="pokemon logo" />
       <p class="p1">Collect all the Pokemon in the maze but don’t let Team Rocket catch you on the hunt! If you’re caught by a member of Team Rocket you’ll lose a life and unlike a cat, you’ve only got three to spare!</p>
-      <p class="p1">Find and collect the large yellow energisers to scare them off. FIX THIS WORDING If you can manage to catch them while they are running scared you will send them running back to base and gain an extra 100 points.</p></p>
+      <p class="p1">Find and collect the large yellow energisers to scare Team Rocket away. If you can manage to catch them while they're running scared you'll send them running back to base and gain an extra 100 points.</p></p>
       <button class="p1 playGame">Gotta Catch 'Em All</button>
     </div>
 <div>
@@ -46,9 +47,9 @@
           <button class="pauseResumeBtn">Pause Game</button>
         </div>
         <div id="audioContainer" class="pause">
-          <audio src=""></audio>
-          <div id="play">▶</div>
-          <div id="pause">⏸</div>
+          <audio id='audio'></audio>
+          <div id="play" class="audio-btns">▶</div>
+          <div id="pause" class="audio-btns">⏸</div>
         </div>
       </aside>
     </div>
