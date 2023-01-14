@@ -13,7 +13,7 @@ body {
 /* .p1Remove {
   display: none;
 } */
-.landingPage {
+.landing-page {
   display: flex;
   flex-shrink: inherit;
   flex-direction: column;
@@ -30,7 +30,7 @@ body {
   width: 65vw;
 }
 
-.playGame {
+.play-game {
   background-color: rgb(57, 57, 232);
   width: 33vw;
   font-size: 2em;
@@ -43,7 +43,7 @@ body {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* gamePage */
 
-.gamePage {
+.game-page {
   display: flex;
   /* flex-shrink: 1;
   height: 100vh;
@@ -65,14 +65,14 @@ body {
   margin: 1em;
 }
 
-.lifeScoreBox,
-.levelsContainer {
+.life-score-box,
+.levels-container {
   border: 1px solid rgba(255, 255, 0, 0.926);
   border-radius: 10px;
   text-align: center;
 }
 
-.livesBox {
+.lives-box {
   display: flex;
   justify-content: center;
 }
@@ -88,18 +88,18 @@ body {
   flex-shrink: 1;
 }
 
-.levelsContainer {
+.levels-container {
   text-align: start;
   padding-left: 20px;
 }
 
 /* ------------------------------------ */
 /* center  */
-.gameContainer {
+.game-container {
   margin: auto;
 }
 
-.gridBox {
+.grid-box {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -107,7 +107,7 @@ body {
   height: 652px;
 }
 
-.gridBox div {
+.grid-box div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +119,7 @@ body {
 /* ------------------------------------ */
 /* right side */
 
-.gameBtns {
+.game-btns {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -137,7 +137,7 @@ button {
   cursor: pointer;
 }
 
-#audioContainer {
+#audio-container {
   display: flex;
   /* flex-direction: column; */
   justify-content: end;
@@ -169,8 +169,8 @@ button {
   border-radius: 10px;
 }
 
-.gHome,
-.cutOuts {
+.g-home,
+.cut-outs {
   border-color: black;
 }
 
@@ -225,13 +225,13 @@ button {
 }  */
 
 @media only screen and (max-width: 980px) {
-  .playGame {
+  .play-game {
     font-size: 1.5em;
   }
 }
 
 @media only screen and (max-width: 700px) {
-  .playGame {
+  .play-game {
     font-size: 1.2em;
   }
   .p1 p {
@@ -240,7 +240,7 @@ button {
 }
 
 @media only screen and (max-width: 450px) {
-  .playGame {
+  .play-game {
     font-size: 0.9em;
   }
   .p1 p {

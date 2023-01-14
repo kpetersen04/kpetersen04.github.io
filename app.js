@@ -1,4 +1,4 @@
-// sound
+// Start of Sound
 const audioElement = document.querySelector("audio");
 const playSoundBtn = document.querySelector("#play");
 const pauseSoundBtn = document.querySelector("#pause");
@@ -8,12 +8,12 @@ const catchPokemonSound = "./audio/pacman_chomp.wav";
 const deathSound = "./audio/pacman_death.wav";
 const eatScaredBaddieSound = "./audio/pacman_eatghost.wav";
 
-let soundOptions = [
-  startGameSound,
-  catchPokemonSound,
-  deathSound,
-  eatScaredBaddieSound,
-];
+// let soundOptions = [
+//   startGameSound,
+//   catchPokemonSound,
+//   deathSound,
+//   eatScaredBaddieSound,
+// ];
 let sound;
 
 let isPauseBtnClicked = false;
@@ -35,42 +35,35 @@ function pauseAudio(audio) {
 
 function pressPlayPauseBtns(audio) {
   if (isPlayBtnClicked === true) {
-    console.log("played");
-    // sound.src = "";
-    // sound.play();
     isPaused = false;
     playSoundBtn.removeEventListener("click", pressPlayPauseBtns);
     pauseSoundBtn.addEventListener("click", pressPlayPauseBtns);
   } else if (isPauseBtnClicked === true) {
-    console.log("paused");
     sound.pause();
     isPaused = true;
-    soundOptions.forEach((option) => pauseAudio());
+    // soundOptions.forEach((option) => pauseAudio());
     pauseSoundBtn.removeEventListener("click", pressPlayPauseBtns);
     playSoundBtn.addEventListener("click", pressPlayPauseBtns);
   }
 }
 
-pauseSoundBtn.addEventListener("click", pressPlayPauseBtns);
-playSoundBtn.addEventListener("click", pressPlayPauseBtns);
-
 playSoundBtn.addEventListener("click", function () {
   isPlayBtnClicked = true;
   isPauseBtnClicked = false;
-  pressPlayPauseBtns;
+  pressPlayPauseBtns();
 });
 pauseSoundBtn.addEventListener("click", function () {
   isPlayBtnClicked = false;
   isPauseBtnClicked = true;
-  pressPlayPauseBtns;
+  pressPlayPauseBtns();
 });
-// landing page
-const playBtn = document.querySelector(".playGame");
+// End of Sound --------------------------------
+// Start of Landing Page
+const playBtn = document.querySelector(".play-game");
 const pageOne = document.querySelector(".p1");
-const pageTwo = document.querySelector(".gamePage");
+const pageTwo = document.querySelector(".game-page");
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("all connected");
   pageTwo.style.display = "none";
   // pageTwo.classList.remove("gamePage");
 });
@@ -92,7 +85,8 @@ function returnToPageOne() {
   pageTwo.style.display = "none";
 }
 
-// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// End of Landing Page –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Start of Board Setup
 let grid;
 const width = 28;
 const height = 31;
@@ -102,7 +96,7 @@ let box;
 let pokeBallPosition;
 let pokemonToCatch = [];
 let score = 0;
-const scoreDisplay = document.querySelector(".scoreDisplay");
+const scoreDisplay = document.querySelector(".score-display");
 const directionOptions = [+1, -1, +width, -width];
 let movement =
   directionOptions[Math.floor(Math.random() * directionOptions.length)];
@@ -147,7 +141,6 @@ const boardDesign = [
 pokemonToCatch = boardDesign.filter(function (numb) {
   return numb === 2;
 });
-// console.log(pokemonToCatch.length);
 
 // 1 - wall - solid color
 // 2 - Pokemon to catch - three different ones
@@ -157,7 +150,7 @@ pokemonToCatch = boardDesign.filter(function (numb) {
 
 function createGrid() {
   for (let i = 0; i < boxNumb; i++) {
-    grid = document.querySelector(".gridBox");
+    grid = document.querySelector(".grid-box");
     box = document.createElement("div");
     grid.appendChild(box);
     boxes.push(box);
@@ -189,13 +182,11 @@ function pokeballAppear() {
   boxes[pokeBallPosition].classList.add("pokeball");
 }
 pokeballAppear();
+// End of Board Design -------------------
 
 const x = pokeBallPosition % width;
-function move() {
-  // pauseAudio(startGameSound);
-  // startGameSound.pause();
-  // isSoundPlaying = false;
-  // pauseAudio(startGameSound);
+function move(event) {
+  sound.pause();
   boxes[pokeBallPosition].classList.remove("pokeball");
   if (
     event.code === "ArrowRight" &&
@@ -237,8 +228,6 @@ function move() {
   checkForWin();
 }
 
-// document.addEventListener("keydown", move);
-
 function pokemomEaten() {
   if (boxes[pokeBallPosition].classList.contains("pokemon")) {
     boxes[pokeBallPosition].classList.remove("pokemon");
@@ -247,7 +236,6 @@ function pokemomEaten() {
     score += 10;
     pokemonToCatch.length -= 1;
     scoreDisplay.innerHTML = score;
-    console.log(pokemonToCatch.length);
   }
 }
 
@@ -261,10 +249,8 @@ function engergiserEaten() {
 
 function revertBaddies() {
   allBaddies.forEach((baddie) => (baddie.isScared = false));
-  console.log("reverted");
 }
 
-// random movement of ghosts - this works, don't delete ---------
 class Baddie {
   constructor(className, startPosition, speed) {
     this.className = className;
@@ -346,8 +332,6 @@ function startBaddiesMovement() {
   document.removeEventListener("keydown", startBaddiesMovement);
 }
 
-// document.addEventListener("keydown", startBaddiesMovement);
-
 function loseLife(baddie) {
   if (
     boxes[pokeBallPosition].classList.contains("baddies") &&
@@ -385,10 +369,6 @@ function loseLife(baddie) {
       document.querySelector("#life1").classList.remove("life");
       endGame();
     }
-    // } else if (boxes[pokeBallPosition].classList.contains("scared-baddies")) {
-    //   console.log("ghost is scared");
-    // Can't remember why I did this - delete when game is finalised
-    // }
   }
 }
 
@@ -423,17 +403,9 @@ function resetGame(i) {
     baddie.position = baddie.startPosition;
     boxes[baddie.position].classList.add(baddie.className, "baddies");
   });
-  // if (qtBtnClicked === true) {
-  //   qtBtnClicked = false;
-  // } else if (score === 100) {
-  //   document.removeEventListener("keydown", move);
-  // }
 }
 
 function endGame() {
-  //   // if endGame button is clicked - Are you sure you want to quit? Y/N options - DONE
-  //   // if you loose 3 lives - You loose - DONE
-  // document.removeEventListener("keydown", move);
   if (qtBtnClicked === true) {
     allBaddies.forEach(function (baddie) {
       if (baddie.isScared === true) {
@@ -447,18 +419,17 @@ function endGame() {
     boxes[pokeBallPosition].classList.remove("pokeball");
     document.removeEventListener("keydown", move);
     document.removeEventListener("keydown", startBaddiesMovement);
-    setTimeout(returnToPageOne, 1000);
+    setTimeout(returnToPageOne, 2000);
   }
 
-  resetGame();
+  setTimeout(resetGame, 2000);
 }
 
 function checkForWin() {
   // if (score >= 2920 && pokemonToCatch.length <= 2) {
-  if (score >= 2920 && pokemonToCatch.length <= 2) {
-    console.log("You win");
+  if (score >= 200 && pokemonToCatch.length <= 280) {
     document.removeEventListener("keydown", move);
-    scoreDisplay.innerHTML = "You win!";
+    scoreDisplay.innerHTML = "YOU WIN!";
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
     });
@@ -478,9 +449,7 @@ function pause(baddie) {
 }
 
 function resume() {
-  console.log("game has starte againb");
   ispauseBtnClicked = false;
-  console.log(ispauseBtnClicked);
   pauseResumeBtn.innerHTML = "Pause Game";
   allBaddies.forEach(function (baddie) {
     clearInterval(baddie.timerId);
@@ -493,7 +462,7 @@ function resume() {
 }
 
 let qtBtnClicked = false;
-const qtBtn = document.querySelector(".quitBtn");
+const qtBtn = document.querySelector(".quit-btn");
 qtBtn.addEventListener("click", (buttonEndGame) => {
   qtBtnClicked = true;
   resume();
@@ -501,7 +470,7 @@ qtBtn.addEventListener("click", (buttonEndGame) => {
 });
 
 let ispauseBtnClicked;
-const pauseResumeBtn = document.querySelector(".pauseResumeBtn");
+const pauseResumeBtn = document.querySelector(".pause-resume-btn");
 pauseResumeBtn.addEventListener("click", pause);
 
 // ------DONT TOUCH BELOW---------- RETURN TO WHEN YOU WANT TO WORK ON LOGICAL MOVEMENT OF THE GHOSTS
