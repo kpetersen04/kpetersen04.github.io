@@ -88,6 +88,8 @@ function returnToPageOne() {
 // End of Landing Page –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Start of Board Setup
 let grid;
+let energiserIntervalId;
+// let allEnergisers = [];
 const width = 28;
 const height = 31;
 const boxNumb = width * height;
@@ -161,6 +163,7 @@ function createGrid() {
       boxes[i].classList.add("pokemon");
     } else if (boardDesign[i] === 3) {
       boxes[i].classList.add("energiser");
+      boxes[i].classList.add("flash");
     } else if (boardDesign[i] === 4) {
       boxes[i].classList.add("gHome");
     } else if (boardDesign[i] === 5) {
@@ -241,6 +244,7 @@ function pokemomEaten() {
 
 function engergiserEaten() {
   if (boxes[pokeBallPosition].classList.contains("energiser")) {
+    sound.play();
     boxes[pokeBallPosition].classList.remove("energiser");
     allBaddies.forEach((baddie) => (baddie.isScared = true));
     setTimeout(revertBaddies, 10000);
@@ -304,7 +308,6 @@ function moveAllBaddies(baddie) {
       movement =
         directionOptions[Math.floor(Math.random() * directionOptions.length)];
     }
-
     if (baddie.isScared === true) {
       boxes[baddie.position].classList.add("scared-baddies");
     }
@@ -407,6 +410,7 @@ function resetGame(i) {
 
 function endGame() {
   if (qtBtnClicked === true) {
+    sound.pause();
     allBaddies.forEach(function (baddie) {
       if (baddie.isScared === true) {
         setTimeout(revertBaddies, 500);
@@ -426,8 +430,8 @@ function endGame() {
 }
 
 function checkForWin() {
-  // if (score >= 2920 && pokemonToCatch.length <= 2) {
-  if (score >= 200 && pokemonToCatch.length <= 280) {
+  if (score >= 2920 && pokemonToCatch.length <= 2) {
+    // if (score >= 200 && pokemonToCatch.length <= 280) {
     document.removeEventListener("keydown", move);
     scoreDisplay.innerHTML = "YOU WIN!";
     allBaddies.forEach(function (baddie) {
@@ -439,6 +443,7 @@ function checkForWin() {
 }
 
 function pause(baddie) {
+  sound.pause();
   pauseResumeBtn.innerHTML = "Resume Game";
   allBaddies.forEach(function (baddie) {
     clearInterval(baddie.timerId);
