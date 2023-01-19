@@ -1,4 +1,4 @@
-# ![Logo](https://i.imgur.com/p0U8Ss5m.png) 
+# ![Logo](https://i.imgur.com/p0U8Ss5.png)
 # PokeMan Game
 For my first coding project, I built a browser-based game created with vanilla JavaScript. I took inspiration from the 1980s game Pacman and the popular Pokemon series.
 
