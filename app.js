@@ -359,16 +359,16 @@ function loseLife(baddie) {
     document.addEventListener("keydown", move);
 
     if (document.querySelector("#life3").classList.contains("life")) {
-      document.querySelector("#life3").innerHTML = "  ";
+      document.querySelector("#life3").innerText = "  ";
       document.querySelector("#life3").classList.remove("life");
     } else if (
       !document.querySelector("#life3").classList.contains("life") &&
       document.querySelector("#life2").classList.contains("life")
     ) {
-      document.querySelector("#life2").innerHTML = "  ";
+      document.querySelector("#life2").innerText = "  ";
       document.querySelector("#life2").classList.remove("life");
     } else if (!document.querySelector("#life2").classList.contains("life")) {
-      document.querySelector("#life1").innerHTML = "  ";
+      document.querySelector("#life1").innerText = "  ";
       document.querySelector("#life1").classList.remove("life");
       endGame();
     }
@@ -431,9 +431,8 @@ function endGame() {
 
 function checkForWin() {
   if (score >= 2920 && pokemonToCatch.length <= 2) {
-    // if (score >= 200 && pokemonToCatch.length <= 280) {
     document.removeEventListener("keydown", move);
-    scoreDisplay.innerHTML = "YOU WIN!";
+    scoreDisplay.innerText = "YOU WIN!";
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
     });
