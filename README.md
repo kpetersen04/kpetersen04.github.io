@@ -4,9 +4,8 @@ For my first coding project, I built a browser-based game created with vanilla J
 
 Fancy testing yourself against Team Rocket and catching some Pokemon? [Play PokeMan here!](https://kpetersen04.github.io/)
 
-## Demo
+## Game Demo
 
-Make a gif of the game and insert here - include landing page and 
 ![](https://git.generalassemb.ly/kpetersen04/PokeMan/blob/main/images/PokeMan.gif)
 
 
