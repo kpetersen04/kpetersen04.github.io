@@ -8,6 +8,10 @@ Fancy testing yourself against Team Rocket and catching some Pokemon? [Play Poke
 
 <p align="center">![](https://github.com/kpetersen04/kpetersen04.github.io/blob/main/images/PokeMan.gif)</p>
 
+<p align="center">
+  <img src="https://github.com/kpetersen04/kpetersen04.github.io/blob/main/images/PokeMan.gif" alt="animated" />
+</p>
+
 
 ## Tech Stack
 HTML, CSS, JavaScript, Git, GitHub, Escalidraw, Pixlr and MS PowerPoint. 
