@@ -7,6 +7,7 @@ Fancy testing yourself against Team Rocket and catching some Pokemon? [Play Poke
 ## Demo
 
 Make a gif of the game and insert here - include landing page and 
+![](https://git.generalassemb.ly/kpetersen04/PokeMan/blob/main/images/PokeMan.gif)
 
 
 ## Tech Stack
