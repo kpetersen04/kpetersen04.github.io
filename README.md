@@ -7,7 +7,7 @@ Fancy testing yourself against Team Rocket and catching some Pokemon? [Play Poke
 ## Game Demo
 
 <p align="center">
-  <img src="https://github.com/kpetersen04/kpetersen04.github.io/blob/main/images/PokeMan.gif" alt="animated" />
+  <img src="https://github.com/kpetersen04/kpetersen04.github.io/blob/main/images/PokeMan.gif" alt="animated"  width="50%" height="50%" />
 </p>
 
 
