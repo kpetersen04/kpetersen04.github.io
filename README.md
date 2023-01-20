@@ -7,7 +7,7 @@ Fancy testing yourself against Team Rocket and catching some Pokemon? [Play Poke
 ## Demo
 
 <p align='center'>
-<img alt='PokeMan animation' style='width: 550px' src='https://kpetersen04.github.io/images/landingpage:start.gif'>
+<img alt='PokeMan animation' src='https://kpetersen04.github.io/images/landingpage:start.gif'>
 </p>
 
 ## Tech Stack
@@ -27,7 +27,7 @@ The game was required to:
 - Use JavaScript for DOM manipulation.
 - Deploy online.
 - Include semantic markup for HTML and CSS.
-- Completed within a 14 days.
+- Be completed within 14 days.
 
 ### Stage One: Planning
 
@@ -43,7 +43,7 @@ As I worked through my project, I continued to use Excalidraw to keep track of w
 
 ### Stage Two: The Core Requirements
 
-The next stage included completing the basic requirements of the game. I set up the grid and included some basic styling, this helped me to see what my end result could look like and got me excited to continue working.
+The next stage included completing the basic requirements of the game. I set up the maze board and included some basic styling, this helped me to see what my end result could look like and got me excited to continue working.
 
 I then moved on to the core game logic including:
 
@@ -72,11 +72,11 @@ I started working on code to make Team Rocket’s movements more logical by havi
 In order to fix the issue of Team Rocket getting stuck in their homebase when their movements were set to random, I created some code which would move them out of home base before their random movement started. This ensured they were on the board soon after starting the game and could pose a real threat to the Pokeball.
 
 ```javascript
-const exitLaneNumbs = [349, 377, 405, 350, 378, 406, 433, 434];
+const exitLaneNumbers = [349, 377, 405, 350, 378, 406, 433, 434];
 
 function moveAllBaddies(baddie) {
   baddie.timerId = setInterval(function () {
-    if (exitLaneNumbs.includes(baddie.position)) {
+    if (exitLaneNumbers.includes(baddie.position)) {
       boxes[baddie.position].classList.remove(
         baddie.className,
         "baddies",
@@ -127,7 +127,7 @@ With more time, I would like to:
 
 - Writing a quick note for myself on what I should start with when I returned to working on my game. This helped me focus and use my available time wisely.
 - Resetting the game, taking into consideration which buttons were clicked when the player ended the game. I systemtically worked through all possible varations to ensure that board reset correctly.
-- The loseLife() felt like a win as the logic for that fucntion came with ease.
+- The loseLife() felt like a win as the logic for that function came with ease.
 - The logical movement of Team Rocket out of their homebase and into the maze where their movement then became randomized.
 
 ## Lessons Learned

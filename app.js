@@ -281,10 +281,10 @@ allBaddies.forEach((baddie) => {
   boxes[baddie.position].classList.add("baddies");
 });
 
-const exitLaneNumbs = [349, 377, 405, 350, 378, 406, 433, 434];
+const exitLaneNumbers = [349, 377, 405, 350, 378, 406, 433, 434];
 function moveAllBaddies(baddie) {
   baddie.timerId = setInterval(function () {
-    if (exitLaneNumbs.includes(baddie.position)) {
+    if (exitLaneNumbers.includes(baddie.position)) {
       boxes[baddie.position].classList.remove(
         baddie.className,
         "baddies",
