@@ -10,9 +10,6 @@ body {
   width: 50vw;
 }
 
-/* .p1Remove {
-  display: none;
-} */
 .landing-page {
   display: flex;
   flex-direction: column;
@@ -42,16 +39,14 @@ body {
 /* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* gamePage */
 
-.game-page {
-  display: flex;
-  /* flex-shrink: 1;
-  height: 100vh;*/
-  width: 100vw;
+.hide {
+  display: none;
 }
 
-/* .p2Remove {
-  display: none;
-} */
+.game-page-visible {
+  display: flex;
+  width: 100vw;
+}
 
 /* left side */
 .left,
@@ -106,14 +101,19 @@ body {
   height: 652px;
 }
 
+.game-result {
+  color: rgba(255, 255, 0, 0.926);
+  font-size: 1.5em;
+  text-align: center;
+  border: 2px solid red;
+}
+
 .grid-box div {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 22px;
   height: 22px;
-  /* border: 1px solid rgba(0, 0, 0, 0.948); */
-  /* If you want the border back - remove 2px from the height and width above */
 }
 /* ------------------------------------ */
 /* right side */
@@ -138,10 +138,8 @@ button {
 
 #audio-container {
   display: flex;
-  /* flex-direction: column; */
   justify-content: end;
   gap: 20px;
-  /* border: 1px solid red; */
 }
 
 .audio-btns {
@@ -219,25 +217,6 @@ button {
   background-color: #4cc9f0;
   /* background-size: cover; */
 }
-/* @media only screen and (max-width: 2500px) {
-  .playGame,
-  .p1 p {
-    font-size: 2em;
-  }
-  /* .landingPage {
-    height: 80vh;
-  } */
-/* } */
-
-/* @media only screen and (max-width: 1600px) {
-  .playGame {
-    font-size: 2em;
-  }
-  .p1 p {
-    font-size: 2em;
-  }
-
-}  */
 
 @media only screen and (max-width: 980px) {
   .play-game {

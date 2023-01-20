@@ -55,7 +55,7 @@ I then moved on to the core game logic including:
 
 ```javascript
 function checkForWin() {
-  if (score >= 2920 && pokemonToCatch.length <= 2) {
+  if (score >= 2920 && pokemonToCatch.length === 2) {
     document.removeEventListener("keydown", move);
     scoreDisplay.innerText = "YOU WIN!";
     allBaddies.forEach(function (baddie) {

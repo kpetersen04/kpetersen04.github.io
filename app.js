@@ -8,12 +8,6 @@ const catchPokemonSound = "./audio/pacman_chomp.wav";
 const deathSound = "./audio/pacman_death.wav";
 const eatScaredBaddieSound = "./audio/pacman_eatghost.wav";
 
-// let soundOptions = [
-//   startGameSound,
-//   catchPokemonSound,
-//   deathSound,
-//   eatScaredBaddieSound,
-// ];
 let sound;
 
 let isPauseBtnClicked = false;
@@ -41,7 +35,6 @@ function pressPlayPauseBtns(audio) {
   } else if (isPauseBtnClicked === true) {
     sound.pause();
     isPaused = true;
-    // soundOptions.forEach((option) => pauseAudio());
     pauseSoundBtn.removeEventListener("click", pressPlayPauseBtns);
     playSoundBtn.addEventListener("click", pressPlayPauseBtns);
   }
@@ -60,18 +53,13 @@ pauseSoundBtn.addEventListener("click", function () {
 // End of Sound --------------------------------
 // Start of Landing Page
 const playBtn = document.querySelector(".play-game");
-const pageOne = document.querySelector(".p1");
+const pageOne = document.querySelector(".landing-page");
 const pageTwo = document.querySelector(".game-page");
 
-document.addEventListener("DOMContentLoaded", function () {
-  pageTwo.style.display = "none";
-  // pageTwo.classList.remove("gamePage");
-});
-
 function playGame() {
-  // pageOne.classList.add("p1Remove");
-  pageOne.style.display = "none";
-  pageTwo.style.display = "flex";
+  pageOne.classList.add("hide");
+  pageTwo.classList.remove("hide");
+  pageTwo.classList.add("game-page-visible");
   playAudio(startGameSound);
 
   document.addEventListener("keydown", startBaddiesMovement);
@@ -81,15 +69,15 @@ function playGame() {
 playBtn.addEventListener("click", playGame);
 
 function returnToPageOne() {
-  pageOne.style.display = "flex";
-  pageTwo.style.display = "none";
+  pageOne.classList.remove("hide");
+  pageTwo.classList.remove("game-page-visible");
+  pageTwo.classList.add("hide");
 }
 
 // End of Landing Page –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // Start of Board Setup
 let grid;
 let energiserIntervalId;
-// let allEnergisers = [];
 const width = 28;
 const height = 31;
 const boxNumb = width * height;
@@ -429,9 +417,13 @@ function endGame() {
   setTimeout(resetGame, 2000);
 }
 
+let isWon = false;
 function checkForWin() {
-  if (score >= 2920 && pokemonToCatch.length <= 2) {
+  // if (score >= 2920 && pokemonToCatch.length === 2) {
+  if (score >= 100) {
+    isWon = true;
     document.removeEventListener("keydown", move);
+    displayEndGameNotice(isWon);
     scoreDisplay.innerText = "YOU WIN!";
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
@@ -439,6 +431,16 @@ function checkForWin() {
     setTimeout(returnToPageOne, 2500);
     setTimeout(resetGame, 2500);
   }
+}
+// WORKING ON THIS NOW
+function displayEndGameNotice(isWon) {
+  console.log("You won");
+  const endGameNotice = document.createElement("div");
+  endGameNotice.classList.add("game-result");
+  endGameNotice.innertHTML = `${
+    isWon ? "YOU WIN!" : "YOU HAVE NO MORE LIVES. GAME OVER"
+  }`;
+  grid.appendChild(endGameNotice);
 }
 
 function pause(baddie) {
@@ -477,7 +479,7 @@ let ispauseBtnClicked;
 const pauseResumeBtn = document.querySelector(".pause-resume-btn");
 pauseResumeBtn.addEventListener("click", pause);
 
-// ------DONT TOUCH BELOW---------- RETURN TO WHEN YOU WANT TO WORK ON LOGICAL MOVEMENT OF THE GHOSTS
+// RETURN TO WHEN YOU WANT TO WORK ON LOGICAL MOVEMENT OF THE GHOSTS
 
 // class Baddie {
 //   constructor(className, startPosition, speed) {
@@ -515,7 +517,7 @@ pauseResumeBtn.addEventListener("click", pause);
 //   // The first number returns the x coordinate and the second number returns the y coordinate of the relevant index
 // }
 
-// COME BACK TO THIS FUNCTION ONCE YOU GET MOST OF THE GAME WORKING -----------
+// COME BACK TO THIS FUNCTION ONCE YOU GET MOST OF THE GAME WORKING
 // function moveAllBaddies(baddie) {
 //   const directionOptions = [+1, -1, +width, -width];
 //   let movement =
