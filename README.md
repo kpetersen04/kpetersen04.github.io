@@ -57,7 +57,8 @@ I then moved on to the core game logic including:
 function checkForWin() {
   if (score >= 2920 && pokemonToCatch.length === 2) {
     document.removeEventListener("keydown", move);
-    scoreDisplay.innerText = "YOU WIN!";
+    isWon = true;
+    displayEndGameNotice(isWon);
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
     });
@@ -113,12 +114,12 @@ I then moved on to additional extras which I thought would add the most value to
 - Audio while the game is loading, when the Pokeball catches a pokemon, when the Pokeball dies and when the Team Rocket is sent home while scared.
 - Play and Pause icons to allow the player to control the sound.
 - Making the yellow engergisers flash constantly on the board.
+- Make the 'YOU WIN' and 'GAME OVER' messages appear over the board.
 
 ### Stage Two: Additional Time
 
 With more time, I would like to:
 
-- Make the 'You win' and 'You lose' message appear on the board (currently replaces the score total).
 - Work on the 'chomp' sound used when a pokemon is eaten.
 - Make the game page responsive so it can be played on tablets and mobile phones.
 - Make the Team Rocket movements logical so they chase after the pokeball under different conditions.

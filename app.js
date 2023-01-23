@@ -86,6 +86,8 @@ let box;
 let pokeBallPosition;
 let pokemonToCatch = [];
 let score = 0;
+const endGameNotice = document.createElement("div");
+let isWon = false;
 const scoreDisplay = document.querySelector(".score-display");
 const directionOptions = [+1, -1, +width, -width];
 let movement =
@@ -358,6 +360,8 @@ function loseLife(baddie) {
     } else if (!document.querySelector("#life2").classList.contains("life")) {
       document.querySelector("#life1").innerText = "  ";
       document.querySelector("#life1").classList.remove("life");
+
+      displayEndGameNotice();
       endGame();
     }
   }
@@ -367,7 +371,6 @@ function resetGame(i) {
   qtBtnClicked = false;
   score = 0;
   scoreDisplay.innerHTML = score;
-
   document.querySelector("#life1").classList.add("life");
   document.querySelector("#life1").innerHTML = "L1";
   document.querySelector("#life2").classList.add("life");
@@ -394,6 +397,7 @@ function resetGame(i) {
     baddie.position = baddie.startPosition;
     boxes[baddie.position].classList.add(baddie.className, "baddies");
   });
+  revertEndGameNotice(isWon);
 }
 
 function endGame() {
@@ -407,7 +411,6 @@ function endGame() {
     });
     returnToPageOne();
   } else if (!document.querySelector("#life1").classList.contains("life")) {
-    scoreDisplay.innerHTML = "You have no more lives. Game Over!";
     boxes[pokeBallPosition].classList.remove("pokeball");
     document.removeEventListener("keydown", move);
     document.removeEventListener("keydown", startBaddiesMovement);
@@ -417,14 +420,11 @@ function endGame() {
   setTimeout(resetGame, 2000);
 }
 
-let isWon = false;
 function checkForWin() {
-  // if (score >= 2920 && pokemonToCatch.length === 2) {
-  if (score >= 100) {
-    isWon = true;
+  if (score >= 2920 && pokemonToCatch.length === 2) {
     document.removeEventListener("keydown", move);
+    isWon = true;
     displayEndGameNotice(isWon);
-    scoreDisplay.innerText = "YOU WIN!";
     allBaddies.forEach(function (baddie) {
       clearInterval(baddie.timerId);
     });
@@ -432,15 +432,17 @@ function checkForWin() {
     setTimeout(resetGame, 2500);
   }
 }
-// WORKING ON THIS NOW
+
 function displayEndGameNotice(isWon) {
-  console.log("You won");
-  const endGameNotice = document.createElement("div");
   endGameNotice.classList.add("game-result");
-  endGameNotice.innertHTML = `${
-    isWon ? "YOU WIN!" : "YOU HAVE NO MORE LIVES. GAME OVER"
-  }`;
+  endGameNotice.innerHTML = `${isWon ? "YOU WIN!" : "GAME OVER!"}`;
   grid.appendChild(endGameNotice);
+}
+function revertEndGameNotice() {
+  isWon = false;
+  endGameNotice.innerHTML = " ";
+  endGameNotice.classList.remove("game-result");
+  grid.removeChild(endGameNotice);
 }
 
 function pause(baddie) {

@@ -97,15 +97,23 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  width: 629px;
-  height: 652px;
+  width: 616px;
+  height: 682px;
 }
 
 .game-result {
-  color: rgba(255, 255, 0, 0.926);
-  font-size: 1.5em;
+  background-color: rgba(255, 255, 0, 1);
+  color: rgb(57, 57, 232);
+  border: 5px solid rgb(57, 57, 232);
+  animation: font-color 1s infinite;
+  font-weight: bold;
   text-align: center;
-  border: 2px solid red;
+  position: relative;
+  top: -50%;
+  transform: translateX(47%);
+  min-width: 309px;
+  min-height: 105px;
+  font-size: 2em;
 }
 
 .grid-box div {
@@ -170,18 +178,6 @@ button {
   animation: flash 1s infinite;
 }
 
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .g-home,
 .cut-outs {
   border-color: black;
@@ -215,7 +211,27 @@ button {
 
 .scared-baddies {
   background-color: #4cc9f0;
-  /* background-size: cover; */
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes font-color {
+  from {
+    color: rgb(57, 57, 232, 1);
+  }
+  to {
+    color: rgb(57, 57, 232, 0);
+  }
 }
 
 @media only screen and (max-width: 980px) {
