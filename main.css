@@ -116,6 +116,15 @@ body {
   font-size: 2em;
 }
 
+@keyframes font-color {
+  from {
+    color: rgb(57, 57, 232, 1);
+  }
+  to {
+    color: rgb(57, 57, 232, 0);
+  }
+}
+
 .grid-box div {
   display: flex;
   align-items: center;
@@ -178,6 +187,18 @@ button {
   animation: flash 1s infinite;
 }
 
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .g-home,
 .cut-outs {
   border-color: black;
@@ -211,27 +232,6 @@ button {
 
 .scared-baddies {
   background-color: #4cc9f0;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes font-color {
-  from {
-    color: rgb(57, 57, 232, 1);
-  }
-  to {
-    color: rgb(57, 57, 232, 0);
-  }
 }
 
 @media only screen and (max-width: 980px) {
