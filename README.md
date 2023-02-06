@@ -116,7 +116,7 @@ I then moved on to additional extras which I thought would add the most value to
 - Making the yellow engergisers flash constantly on the board.
 - Make the 'YOU WIN' and 'GAME OVER' messages appear over the board.
 
-### Stage Two: Additional Time
+### Stage Four: Additional Time
 
 With more time, I would like to:
 
