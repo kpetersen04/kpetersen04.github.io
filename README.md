@@ -33,8 +33,6 @@ The game was required to:
 
 I am a natural planner and researcher, so this part of the project came easily to me. I used Excalidraw, a virtual whiteboard, to lay out the look I wanted for my game and list the setup and game logic I would need to design.
 
-<!-- ![App Screenshot](https://i.imgur.com/7fFtqAXl.png) -->
-
 <p align='center'>
 <img alt='Excalidraw plan' style='width: 550px' src='https://kpetersen04.github.io/images/V1_PokeMonPlanning.png'>
 </p>
