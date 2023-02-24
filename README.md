@@ -111,7 +111,7 @@ I then moved on to additional extras which I thought would add the most value to
 - A Quit Game button that reset the board and returned the player to the homepage.
 - Audio while the game is loading, when the Pokeball catches a pokemon, when the Pokeball dies and when the Team Rocket is sent home while scared.
 - Play and Pause icons to allow the player to control the sound.
-- Making the yellow engergisers flash constantly on the board.
+- Making the yellow energisers flash constantly on the board.
 - Make the 'YOU WIN' and 'GAME OVER' messages appear over the board.
 
 ### Stage Four: Additional Time
@@ -125,7 +125,7 @@ With more time, I would like to:
 ## The Wins
 
 - Writing a quick note for myself on what I should start with when I returned to working on my game. This helped me focus and use my available time wisely.
-- Resetting the game, taking into consideration which buttons were clicked when the player ended the game. I systemtically worked through all possible varations to ensure that board reset correctly.
+- Resetting the game, taking into consideration which buttons were clicked when the player ended the game. I systematically worked through all possible variations to ensure that the board reset correctly.
 - The loseLife() felt like a win as the logic for that function came with ease.
 - The logical movement of Team Rocket out of their homebase and into the maze where their movement then became randomized.
 
@@ -135,6 +135,6 @@ With more time, I would like to:
 
 - Specific Coding Challenge:
   I experienced a bug where Team Rocket, when flashing blue and caught by the Pokeball, would be sent back to base, flash back to their normal state and then reverting right away to scared.
-  I attempted to resolve this by using the revertBaddies() but this changed them all back to their normal state. I was able to fix this bug by setting a baddies.isScarred varaible to false and monitoring/updating this throughout the game.
+  I attempted to resolve this by using the revertBaddies() but this changed them all back to their normal state. I was able to fix this bug by setting a baddies.isScarred variable to false and monitoring/updating this throughout the game.
 
-- Editing Tools: I ended up having to investigate photo edting tools to remove backgrounds and edit two images together. Putting in the effort to gain this additional knowledge resulted in a more visually appealing game and was worth the time.
+- Editing Tools: I ended up having to investigate photo editing tools to remove backgrounds and edit two images together. Putting in the effort to gain this additional knowledge resulted in a more visually appealing game and was worth the time.
