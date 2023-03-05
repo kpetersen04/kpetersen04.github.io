@@ -50,7 +50,7 @@ pauseSoundBtn.addEventListener("click", function () {
   isPauseBtnClicked = true;
   pressPlayPauseBtns();
 });
-// End of Sound --------------------------------
+// End of Sound –––––––––––––––––––––––––––––
 // Start of Landing Page
 const playBtn = document.querySelector(".play-game");
 const pageOne = document.querySelector(".landing-page");
@@ -73,8 +73,7 @@ function returnToPageOne() {
   pageTwo.classList.remove("game-page-visible");
   pageTwo.classList.add("hide");
 }
-
-// End of Landing Page –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// End of Landing Page –––––––––––––––––––––––––––––
 // Start of Board Setup
 let grid;
 let energiserIntervalId;
@@ -175,7 +174,7 @@ function pokeballAppear() {
   boxes[pokeBallPosition].classList.add("pokeball");
 }
 pokeballAppear();
-// End of Board Design -------------------
+// End of Board Design  –––––––––––––––––––––––––––––
 
 const x = pokeBallPosition % width;
 function move(event) {
@@ -224,7 +223,6 @@ function move(event) {
 function pokemomEaten() {
   if (boxes[pokeBallPosition].classList.contains("pokemon")) {
     boxes[pokeBallPosition].classList.remove("pokemon");
-    // catchPokemonSound.playbackRate = 2;
     playAudio(catchPokemonSound);
     score += 10;
     pokemonToCatch.length -= 1;
@@ -256,10 +254,6 @@ class Baddie {
   }
 }
 
-// meowth = blinky (follows pac-man direclty)
-// jessie = inky (His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target.)
-// james = pinky (chases to the 2 pac-dots in front of pac-man)
-// blue = clyde (chases directly after pacman)
 const meowth = new Baddie("meowth", 405, 200);
 const jessie = new Baddie("jessie", 406, 200);
 const james = new Baddie("james", 433, 400);
@@ -480,98 +474,3 @@ qtBtn.addEventListener("click", (buttonEndGame) => {
 let ispauseBtnClicked;
 const pauseResumeBtn = document.querySelector(".pause-resume-btn");
 pauseResumeBtn.addEventListener("click", pause);
-
-// RETURN TO WHEN YOU WANT TO WORK ON LOGICAL MOVEMENT OF THE GHOSTS
-
-// class Baddie {
-//   constructor(className, startPosition, speed) {
-//     this.className = className;
-//     this.startPosition = startPosition;
-//     this.speed = speed;
-//     this.position = startPosition;
-//     this.timerId = 0;
-//     this.x = 0;
-//     this.y = 0;
-//   }
-// }
-
-// // // meowth = blinky (follows pac-man direclty)
-// // // jessie = inky (His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target.)
-// // // james = pinky (chases to the 2 pac-dots in front of pac-man)
-// // // blue = clyde (chases directly after pacman)
-// const meowth = new Baddie("meowth", 405, 300);
-// // // const jessie = new Baddie("jessie", 406, 400);
-// // // const james = new Baddie("james", 433, 500);
-// // // const blue = new Baddie("blue", 434, 600);
-
-// // // const allBaddies = [meowth, jessie, james, blue];
-// const allBaddies = [meowth];
-
-// // console.log(meowth.position);
-
-// allBaddies.forEach((baddie) => {
-//   boxes[baddie.position].classList.add(baddie.className);
-//   boxes[baddie.position].classList.add("baddies");
-// });
-
-// function getCoordinates(index) {
-//   return [index % width, Math.floor(index / width)];
-//   // The first number returns the x coordinate and the second number returns the y coordinate of the relevant index
-// }
-
-// COME BACK TO THIS FUNCTION ONCE YOU GET MOST OF THE GAME WORKING
-// function moveAllBaddies(baddie) {
-//   const directionOptions = [+1, -1, +width, -width];
-//   let movement =
-//     directionOptions[Math.floor(Math.random() * directionOptions.length)];
-//   baddie.timerId = setInterval(function () {
-//     if (
-//       !boxes[baddie.position + movement].classList.contains("wall") &&
-//       !boxes[baddie.position + movement].classList.contains("baddies")
-//     ) {
-//       const [pokeBallX, pokeBallY] = getCoordinates(pokeBallPosition);
-//       // console.log(`pokeball location: ${[pokeBallX, pokeBallY]}`);
-//       const [baddieX, baddieY] = getCoordinates(baddie.position);
-//       // console.log(`baddie location: ${[baddieX, baddieY]}`);
-//       const [newBaddieX, newBaddieY] = getCoordinates(
-//         baddie.position + movement
-//       );
-//       // console.log(`new baddie location: ${[newBaddieX, newBaddieY]}`);
-//       function isXCloser() {
-//         if (newBaddieX - pokeBallX > baddieX - pokeBallX) {
-//           return true;
-//         }
-//         return false;
-//       }
-//       // console.log(`x =${isXCloser()}`);
-
-//       function isYCloser() {
-//         if (newBaddieY - pokeBallY > baddieY - pokeBallY) {
-//           return true;
-//         }
-//         return false;
-//       }
-//       // console.log(`y =${isYCloser()}`);
-//       if (isXCloser() === true || isYCloser() === true) {
-//         console.log("correct coord.");
-//         boxes[baddie.position].classList.remove(baddie.className, "baddies");
-//         baddie.position += movement;
-//         boxes[baddie.position].classList.add(baddie.className, "baddies");
-
-// THIS WORKS UNTIL YOU HIT A WALL AND THEN IT DOESNT MOVE AFTER THAT, PROBLEM HERE?
-//       } else {
-//         movement =
-//           directionOptions[Math.floor(Math.random() * directionOptions.length)];
-//       }
-//     }
-//   }, baddie.speed);
-// }
-
-// function startBaddiesMovement() {
-//   allBaddies.forEach((baddie) => moveAllBaddies(baddie));
-//   document.removeEventListener("keydown", startBaddiesMovement);
-// }
-
-// document.addEventListener("keydown", startBaddiesMovement);
-
-// ------------------------
