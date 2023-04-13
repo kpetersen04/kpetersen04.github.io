@@ -78,7 +78,7 @@ I then moved on to the core game logic including:
 - Monitoring and visually updating the Pokeball lives lost.
 - The win function.
 
-For the win function I took into account both the total score, which had to be greater than or equal to 2920 and if all the pokemon had been cleared from the board. Once these requirements are met the keydown event listener was removed and the player wasn't able to move the Pokeball any further. ClearInterval was also called to stop the movement of Team Rocket and the final game result was then displayed with the 'YOU WIN' notice. After 2.5 seconds the returnToPageOne and resetGame functions were called to wipe the game and allow the player to start the game again from the landing page.
+For the win function I took into account both the total score, which had to be greater than or equal to 2920 and if all the pokemon had been cleared from the board. Once these requirements were met the keydown event listener was removed and the player wasn't able to move the Pokeball any further. ClearInterval was also called to stop the movement of Team Rocket and the final game result was then displayed with the 'YOU WIN' notice. After 2.5 seconds the returnToPageOne and resetGame functions were called to wipe the game and allow the player to start the game again from the landing page.
 
 ```javascript
 function checkForWin() {
